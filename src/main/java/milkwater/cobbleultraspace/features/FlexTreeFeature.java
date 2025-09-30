@@ -1,10 +1,11 @@
-package milkwater.ultraspace.features;
+package milkwater.cobbleultraspace.features;
 
 import com.mojang.serialization.Codec;
-import milkwater.ultraspace.CobbleUltraSpace;
+import milkwater.cobbleultraspace.CobbleUltraSpace;
 import net.minecraft.block.Block;
 import net.minecraft.structure.StructurePlacementData;
 import net.minecraft.structure.StructureTemplate;
+import net.minecraft.structure.StructureTemplateManager;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Heightmap;
@@ -24,29 +25,28 @@ public class FlexTreeFeature extends Feature<DefaultFeatureConfig> {
     public boolean generate(FeatureContext<DefaultFeatureConfig> context) {
         StructureWorldAccess world = context.getWorld();
         BlockPos origin = context.getOrigin();
+        StructureTemplateManager mgr = world.getServer().getStructureTemplateManager();
 
-        // Snap to the top of terrain
-        BlockPos surface = world.getTopPosition(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, origin);
+        BlockPos surface = world.getTopPosition(Heightmap.Type.MOTION_BLOCKING, origin);
 
         Identifier id = Identifier.of(CobbleUltraSpace.MOD_ID, "flex_tree");
 
-        Optional<StructureTemplate> opt = world.toServerWorld()
-                .getStructureTemplateManager()
-                .getTemplate(id);
+        Optional<StructureTemplate> opt = mgr.getTemplate(id);
         if (opt.isEmpty()) {
-            System.out.println("FlexTree: template not found! Looking for " + id);
+            System.out.println("FlexTree: template manager couldn't load " + id);
             return false;
         }
+
+        CobbleUltraSpace.LOGGER.info("FlexTree generating at {}", origin);
 
         StructureTemplate template = opt.get();
         StructurePlacementData data = new StructurePlacementData()
                 .setIgnoreEntities(true)
                 .setUpdateNeighbors(false);
 
-        // Place directly on the surface
         BlockPos placePos = surface;
 
-        boolean success = template.place(world, placePos, placePos, data, world.getRandom(), Block.NOTIFY_ALL);
+        boolean success = template.place(world, placePos, placePos, data, world.getRandom(), Block.NOTIFY_LISTENERS);
         return success;
     }
 }

@@ -16,10 +16,10 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"milkwater.ultraspace.CobbleUltraSpace"
+			"milkwater.cobbleultraspace.CobbleUltraSpace"
 		],
 		"fabric-datagen": [
-			"milkwater.ultraspace.CobbleUltraSpaceDataGenerator"
+			"milkwater.cobbleultraspace.CobbleUltraSpaceDataGenerator"
 		]
 	},
 	"depends": {

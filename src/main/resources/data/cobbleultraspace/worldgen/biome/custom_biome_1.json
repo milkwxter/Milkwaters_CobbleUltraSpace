@@ -8,6 +8,7 @@
     "sky_color": 7907327,
     "water_color": 4159204,
     "water_fog_color": 329011,
+    "grass_color": 48397,
     "mood_sound": {
       "sound": "minecraft:ambient.cave",
       "tick_delay": 6000,
@@ -29,15 +30,14 @@
     [],
     [],
     [],
+    ["minecraft:forest_rock"],
     [],
     [],
     [],
     [],
-    [],
-    ["cobbleultraspace:flex_tree_placed"],
+    ["minecraft:patch_grass_jungle","cobbleultraspace:flex_tree_placed"],
     []
-  ]
-,
+  ],
 
   "spawners": {
     "creature": [

@@ -1,4 +1,4 @@
-package milkwater.ultraspace;
+package milkwater.cobbleultraspace;
 
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.context.CommandContext;
