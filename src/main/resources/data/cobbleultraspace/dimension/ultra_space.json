@@ -6,7 +6,7 @@
     "biome_source": {
       "biomes": [
         {
-          "biome": "cobbleultraspace:custom_biome_1",
+          "biome": "cobbleultraspace:ultra_jungle",
           "parameters": {
             "continentalness": [
               -0.19,
@@ -18,17 +18,17 @@
               -0.375
             ],
             "humidity": [
-              -1.0,
-              -0.35
+              -0.8,
+              -0.2
             ],
-            "offset": 0.0,
+            "offset": 0.1,
             "temperature": [
               -0.45,
               -0.15
             ],
             "weirdness": [
-              -0.9333,
-              -0.7666
+              0.6,
+              0.9
             ]
           }
         },

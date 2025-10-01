@@ -1,14 +1,15 @@
 {
   "has_precipitation": true,
   "temperature": 0.8,
-  "downfall": 0.4,
+  "downfall": 0.5,
 
   "effects": {
-    "fog_color": 12638463,
+    "fog_color": 8335151,
     "sky_color": 7907327,
-    "water_color": 4159204,
-    "water_fog_color": 329011,
+    "water_color": 65471,
+    "water_fog_color": 36715,
     "grass_color": 48397,
+    "foliage_color": 48397,
     "mood_sound": {
       "sound": "minecraft:ambient.cave",
       "tick_delay": 6000,
@@ -27,7 +28,7 @@
 
   "features": [
     [],
-    [],
+    ["minecraft:lake_lava_surface"],
     [],
     [],
     ["minecraft:forest_rock"],
@@ -35,7 +36,7 @@
     [],
     [],
     [],
-    ["minecraft:patch_grass_jungle","cobbleultraspace:flex_tree_placed"],
+    ["minecraft:patch_grass_jungle", "cobbleultraspace:flex_tree_placed", "minecraft:flower_forest_flowers", "minecraft:flower_meadow"],
     []
   ],
 
