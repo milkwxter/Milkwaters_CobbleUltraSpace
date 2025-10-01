@@ -31,24 +31,17 @@
     ["minecraft:lake_lava_surface"],
     [],
     [],
-    ["minecraft:forest_rock"],
+    ["minecraft:forest_rock", "cobbleultraspace:beastite_spike_big_placed"],
     [],
     [],
     [],
     [],
-    ["minecraft:patch_grass_jungle", "cobbleultraspace:flex_tree_placed", "minecraft:flower_forest_flowers", "minecraft:flower_meadow"],
+    ["minecraft:patch_grass_jungle", "cobbleultraspace:flex_tree_placed", "minecraft:flower_forest_flowers", "minecraft:flower_meadow", "cobbleultraspace:jungle_bush_placed"],
     []
   ],
 
   "spawners": {
-    "creature": [
-      {
-        "type": "minecraft:sheep",
-        "weight": 12,
-        "minCount": 4,
-        "maxCount": 4
-      }
-    ],
+    "creature": [],
     "monster": [],
     "ambient": [],
     "axolotls": [],

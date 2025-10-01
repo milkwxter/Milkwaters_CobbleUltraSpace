@@ -7,8 +7,10 @@ import net.minecraft.block.Blocks;
 import net.minecraft.structure.StructurePlacementData;
 import net.minecraft.structure.StructureTemplate;
 import net.minecraft.structure.StructureTemplateManager;
+import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
@@ -17,10 +19,13 @@ import net.minecraft.world.gen.feature.util.FeatureContext;
 
 import java.util.Optional;
 
-public class FlexTreeFeature extends Feature<DefaultFeatureConfig> {
-    public FlexTreeFeature(Codec<DefaultFeatureConfig> codec) {
+public class BeastiteSpikeFeature extends Feature<DefaultFeatureConfig> {
+    public BeastiteSpikeFeature(Codec<DefaultFeatureConfig> codec) {
         super(codec);
     }
+
+    private int GoThisBlocksDeep = 3;
+    private String FeatureName = "beastite_spike_big";
 
     @Override
     public boolean generate(FeatureContext<DefaultFeatureConfig> context) {
@@ -29,17 +34,8 @@ public class FlexTreeFeature extends Feature<DefaultFeatureConfig> {
         BlockPos origin = context.getOrigin();
         StructureTemplateManager mgr = world.getServer().getStructureTemplateManager();
 
-        // get the top block at the spawn coordinates
-        BlockPos surface = world.getTopPosition(Heightmap.Type.WORLD_SURFACE_WG, origin);
-
-        // only spawn if it's on top of a grass block
-        Block blockBelow = world.getBlockState(surface.down()).getBlock();
-        if (!(blockBelow == Blocks.GRASS_BLOCK)) {
-            return false;
-        }
-
         // get the structure
-        Identifier id = Identifier.of(CobbleUltraSpace.MOD_ID, "flex_tree");
+        Identifier id = Identifier.of(CobbleUltraSpace.MOD_ID, FeatureName);
         Optional<StructureTemplate> opt = mgr.getTemplate(id);
         if (opt.isEmpty()) {
             return false;
@@ -49,14 +45,27 @@ public class FlexTreeFeature extends Feature<DefaultFeatureConfig> {
         StructureTemplate template = opt.get();
         StructurePlacementData data = new StructurePlacementData()
                 .setIgnoreEntities(true)
-                .setUpdateNeighbors(false);
+                .setUpdateNeighbors(false)
+                .setRotation(BlockRotation.random(world.getRandom()));
 
-        // place the structure
-        BlockPos placePos = surface.add(
+        // get the top block at the spawn coordinates
+        BlockPos surface = world.getTopPosition(Heightmap.Type.WORLD_SURFACE_WG, origin);
+
+        // set surface to the middle of the bottom of the structure
+        surface = surface.add(
                 -template.getSize().getX() / 2,
                 0,
                 -template.getSize().getZ() / 2
         );
+
+        // only spawn if it's on top of a grass block
+        Block blockBelow = world.getBlockState(surface.down()).getBlock();
+        if (!(blockBelow == Blocks.GRASS_BLOCK)) {
+            return false;
+        }
+
+        // place the structure
+        BlockPos placePos = surface.add(0, -GoThisBlocksDeep,0);
         boolean success = template.place(world, placePos, placePos, data, world.getRandom(), Block.NOTIFY_LISTENERS);
         return success;
     }
