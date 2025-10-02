@@ -1,6 +1,7 @@
 package milkwater.cobbleultraspace;
 
 import milkwater.cobbleultraspace.features.BeastiteSpikeFeature;
+import milkwater.cobbleultraspace.features.FlexTreeBigFeature;
 import milkwater.cobbleultraspace.features.FlexTreeFeature;
 import net.fabricmc.api.ModInitializer;
 
@@ -40,6 +41,10 @@ public class CobbleUltraSpace implements ModInitializer {
             Registry.register(Registries.FEATURE,
                     Identifier.of(MOD_ID, "beastite_spike_big"),
                     new BeastiteSpikeFeature(DefaultFeatureConfig.CODEC));
+    public static final Feature<DefaultFeatureConfig> FLEX_TREE_BIG_FEATURE =
+            Registry.register(Registries.FEATURE,
+                    Identifier.of(MOD_ID, "flex_tree_big"),
+                    new FlexTreeBigFeature(DefaultFeatureConfig.CODEC));
 
     @Override
 	public void onInitialize() {

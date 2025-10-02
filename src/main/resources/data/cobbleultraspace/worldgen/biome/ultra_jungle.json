@@ -36,7 +36,15 @@
     [],
     [],
     [],
-    ["minecraft:patch_grass_jungle", "cobbleultraspace:flex_tree_placed", "minecraft:flower_forest_flowers", "minecraft:flower_meadow", "cobbleultraspace:jungle_bush_placed"],
+    [
+      "minecraft:patch_grass_jungle",
+      "cobbleultraspace:flex_tree_placed",
+      "minecraft:flower_forest_flowers",
+      "minecraft:flower_meadow",
+      "cobbleultraspace:jungle_bush_placed",
+      "cobbleultraspace:flex_tree_big_placed",
+      "minecraft:bamboo_light"
+    ],
     []
   ],
 
